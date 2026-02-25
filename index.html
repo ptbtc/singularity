@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Ascent to Singularity — Daily AI Timeline</title>
+<meta name="description" content="A daily chronicle of the intelligence explosion, curated from Dr. Alex Wissner-Gross. Tracking AI milestones, breakthroughs, and the march toward singularity.">
+<meta property="og:title" content="The Ascent to Singularity">
+<meta property="og:description" content="A daily chronicle of the intelligence explosion, as it happens.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://singularity.photonyx.com">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Ascent to Singularity">
+<meta name="twitter:description" content="Daily AI timeline tracking the march toward singularity. Curated from @alexwg.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%2352b788'/%3E%3Cstop offset='100%25' stop-color='%2395d5b2'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='50' cy='50' r='46' fill='none' stroke='url(%23g)' stroke-width='4'/%3E%3Cpath d='M50 12 L50 88 M30 20 Q50 50 30 80 M70 20 Q50 50 70 80' fill='none' stroke='url(%23g)' stroke-width='3' stroke-linecap='round'/%3E%3Ccircle cx='50' cy='50' r='6' fill='%2352b788'/%3E%3C/svg%3E">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;900&family=Source+Serif+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --teal:#52b788;--teal-dim:#40916c;--teal-bright:#95d5b2;
+  --teal-glow:rgba(82,183,136,0.12);--teal-glow-strong:rgba(82,183,136,0.25);
+  --bg:#0a0a0a;--surface:#111111;--surface2:#1a1a1a;--surface3:#222222;
+  --text:#e2e8f0;--text-dim:#94a3b8;--text-muted:#64748b;
+  --border:#1e2e2a;--border-hover:#2a4a3a;
+  --gold:#f59e0b;
+}
+body{background:var(--bg);color:var(--text);font-family:'Source Serif Pro',Georgia,serif;line-height:1.85;min-height:100vh;font-size:18px}
+::selection{background:var(--teal);color:var(--bg)}
+a{color:var(--teal);text-decoration:none;transition:color 0.2s}
+a:hover{color:var(--teal-bright)}
+
+/* Header */
+.header{text-align:center;padding:6rem 3rem 3rem;position:relative;overflow:hidden}
+/* Animated horizon line */
+.header::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent 5%,var(--teal-dim) 50%,transparent 95%);opacity:0.5}
+.header-art{position:relative;width:100%;max-width:800px;height:100px;margin:0 auto 1rem;opacity:0.7}
+.header-art svg{width:100%;height:100%}
+.header h1{font-family:'Playfair Display',serif;font-weight:900;font-size:4.5rem;letter-spacing:0.02em;background:linear-gradient(135deg,#e2e8f0 0%,#52b788 50%,#95d5b2 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:0.15rem;position:relative;z-index:1}
+.header .subtitle{font-size:1.4rem;color:var(--text-dim);max-width:700px;margin:0 auto 0.75rem;font-style:italic}
+.header .credit{font-size:0.95rem;color:var(--text-muted)}
+.header .credit a{color:var(--teal)}
+
+/* Controls bar */
+.controls{max-width:1400px;margin:0 auto 3rem;padding:0 3rem;display:flex;align-items:center;gap:2rem}
+.search-wrap{flex:1}
+.search-wrap input{width:100%;padding:1rem 1.5rem;background:var(--surface);border:1px solid var(--border);border-radius:8px;color:var(--text);font-family:'Source Serif Pro',serif;font-size:1.1rem;outline:none;transition:border-color 0.3s,box-shadow 0.3s}
+.search-wrap input:focus{border-color:var(--teal);box-shadow:0 0 20px var(--teal-glow)}
+.search-wrap{position:relative}
+.search-wrap input::placeholder{color:var(--text-muted)}
+.search-clear{position:absolute;right:1rem;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--text-muted);font-size:1.3rem;cursor:pointer;display:none;padding:0.2rem 0.4rem;line-height:1;transition:color 0.2s}
+.search-clear:hover{color:var(--teal)}
+.stats{font-size:1rem;color:var(--text-dim);white-space:nowrap;font-family:'Playfair Display',serif}
+.stats span{color:var(--teal);font-weight:700;font-size:1.3rem}
+
+/* Topic pills */
+.topics{max-width:1400px;margin:-1.5rem auto 2rem;padding:0 3rem;display:flex;gap:0.5rem;flex-wrap:wrap;align-items:center}
+.topics .label{font-family:'Playfair Display',serif;font-size:0.8rem;color:var(--text-muted);letter-spacing:0.05em;text-transform:uppercase;margin-right:0.25rem}
+.topics button{font-family:'Source Serif Pro',serif;font-size:0.85rem;color:var(--text-dim);background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:0.35rem 1rem;cursor:pointer;transition:all 0.2s;white-space:nowrap}
+.topics button:hover,.topics button.active{color:var(--teal);border-color:var(--teal-dim);background:var(--surface2)}
+.topics button .count{font-size:0.7rem;color:var(--text-muted);margin-left:0.3rem}
+@media(max-width:768px){.topics{padding:0 1rem;margin:-1rem auto 1.5rem;gap:0.4rem}.topics button{font-size:0.75rem;padding:0.3rem 0.8rem}}
+
+/* Date nav */
+.date-nav{max-width:1400px;margin:0 auto 2rem;padding:0 3rem;display:flex;gap:0.5rem;flex-wrap:wrap}
+.date-nav button{font-family:'Playfair Display',serif;font-size:0.8rem;color:var(--text-muted);background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:0.4rem 0.8rem;cursor:pointer;transition:all 0.2s;letter-spacing:0.03em}
+.date-nav button:hover,.date-nav button.active{color:var(--teal);border-color:var(--teal-dim);background:var(--surface2)}
+
+/* Main content */
+.main{max-width:1400px;margin:0 auto;padding:0 3rem 6rem}
+
+/* Entry cards */
+.entry{background:var(--surface);border:1px solid var(--border);border-radius:16px;margin-bottom:2.5rem;overflow:hidden;transition:border-color 0.4s,box-shadow 0.4s,transform 0.3s;opacity:0;transform:translateY(20px)}
+.entry.visible{opacity:1;transform:translateY(0)}
+.entry:hover{border-color:var(--teal-dim);box-shadow:0 4px 60px var(--teal-glow);transform:translateY(-2px)}
+
+.entry-header{display:flex;align-items:baseline;justify-content:space-between;padding:2.5rem 3rem 0;gap:2rem}
+.entry-date{font-family:'Playfair Display',serif;font-size:0.95rem;color:var(--teal);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;white-space:nowrap}
+.entry-tagline{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;color:var(--text);line-height:1.35;flex:1}
+
+/* Top 3 Insights */
+.insights{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;padding:2rem 3rem;margin:0}
+.insight{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:1.5rem;position:relative;transition:border-color 0.3s,background 0.3s}
+.insight:hover{border-color:var(--teal-dim);background:var(--surface3)}
+.insight-num{font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:900;color:var(--teal);opacity:0.6;position:absolute;top:0.75rem;right:1rem;line-height:1}
+.insight p{font-size:1.05rem;color:var(--text-dim);line-height:1.6;padding-right:2rem}
+
+/* Summary */
+.entry-summary{padding:1.5rem 3rem 2rem;columns:2;column-gap:3rem}
+.entry-summary p{font-size:1.15rem;line-height:1.85;color:var(--text);margin-bottom:1rem;break-inside:avoid}
+
+/* Milestones */
+.milestones-section{padding:0 3rem 2rem}
+.milestones-toggle{font-family:'Playfair Display',serif;font-size:0.85rem;color:var(--text-muted);cursor:pointer;letter-spacing:0.05em;text-transform:uppercase;border:none;background:none;padding:0.5rem 0;transition:color 0.2s;display:flex;align-items:center;gap:0.5rem}
+.milestones-toggle:hover{color:var(--teal)}
+.milestones-toggle .arrow{transition:transform 0.3s;display:inline-block}
+.milestones-toggle.open .arrow{transform:rotate(90deg)}
+.milestones-list{list-style:none;padding:0.75rem 0 0;display:none}
+.milestones-list.open{display:block}
+.milestones-list li{position:relative;padding-left:1.5rem;margin-bottom:0.5rem;font-size:0.95rem;color:var(--text-dim);line-height:1.6}
+.milestones-list li::before{content:'›';position:absolute;left:0;color:var(--teal);font-weight:bold;font-size:1.1rem}
+
+/* Footer links */
+.entry-footer{padding:0 3rem 2rem;display:flex;gap:1rem;flex-wrap:wrap}
+.entry-footer a{font-size:0.85rem;color:var(--teal);border:1px solid var(--border);padding:0.4rem 1rem;border-radius:6px;transition:all 0.2s;font-family:'Playfair Display',serif;letter-spacing:0.03em}
+.entry-footer a:hover{background:var(--teal);color:var(--bg);border-color:var(--teal)}
+
+/* No results */
+.no-results{text-align:center;padding:5rem 3rem;color:var(--text-muted);font-size:1.2rem;font-style:italic;display:none}
+
+/* Search timeline mode */
+.search-timeline{display:none;max-width:1400px;margin:0 auto;padding:0 3rem 6rem}
+.search-timeline.active{display:block}
+.search-timeline .tl-line{position:relative;padding-left:4rem;margin-left:1.5rem}
+/* The spine — gradient line that fades at edges */
+.search-timeline .tl-line::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,transparent,var(--teal-dim) 5%,var(--teal-dim) 95%,transparent)}
+.search-timeline .tl-date-group{margin-bottom:2.5rem;position:relative}
+/* Diamond node on the spine for each date */
+.search-timeline .tl-date-group::before{content:'';position:absolute;left:-4rem;top:0.6rem;width:10px;height:10px;background:var(--teal);transform:rotate(45deg);box-shadow:0 0 16px var(--teal),0 0 4px var(--teal);z-index:2;margin-left:-5px}
+/* Horizontal connector from diamond to content */
+.search-timeline .tl-date-group::after{content:'';position:absolute;left:-3.4rem;top:0.95rem;width:3.4rem;height:1px;background:linear-gradient(to right,var(--teal-dim),transparent)}
+.search-timeline .tl-date{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--teal);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:0.75rem;position:relative}
+/* Small tick marks for each item */
+.search-timeline .tl-item{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--border);border-radius:0 10px 10px 0;padding:1rem 1.25rem;margin-bottom:0.6rem;font-size:1rem;color:var(--text-dim);line-height:1.7;transition:all 0.3s;position:relative}
+.search-timeline .tl-item::before{content:'';position:absolute;left:-4.19rem;top:50%;width:1rem;height:1px;background:var(--border);transition:background 0.3s}
+.search-timeline .tl-item:hover{border-color:var(--teal-dim);border-left-color:var(--teal);box-shadow:0 2px 30px var(--teal-glow)}
+.search-timeline .tl-item:hover::before{background:var(--teal-dim)}
+.search-timeline .tl-item .tl-type{font-family:'Playfair Display',serif;font-size:0.7rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.3rem}
+.search-timeline .tl-item mark{background:rgba(82,183,136,0.15);color:var(--teal);border-radius:2px;padding:0 2px;border-bottom:1px solid var(--teal-dim)}
+.search-timeline .tl-tagline{font-family:'Playfair Display',serif;font-size:0.85rem;color:var(--text-muted);font-style:italic;margin-bottom:0.5rem}
+/* Frequency visualization */
+.freq-chart{padding:1.5rem 0 1rem;position:relative}
+.freq-chart .freq-label{font-family:'Playfair Display',serif;font-size:0.75rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.75rem}
+.freq-track{display:flex;align-items:end;gap:2px;height:60px;padding:0.5rem 0;position:relative}
+.freq-track::before{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:var(--border)}
+.freq-bar{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;position:relative;cursor:pointer;min-width:0}
+.freq-bar .dot{width:100%;max-width:20px;border-radius:50%;background:var(--teal);transition:all 0.3s;opacity:0.25;aspect-ratio:1}
+.freq-bar .dot.has-hits{opacity:1;box-shadow:0 0 8px var(--teal-glow-strong)}
+.freq-bar:hover .dot.has-hits{box-shadow:0 0 16px var(--teal),0 0 4px var(--teal);transform:scale(1.3)}
+.freq-bar .freq-tip{position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:0.3rem 0.6rem;font-size:0.7rem;color:var(--text-dim);white-space:nowrap;opacity:0;pointer-events:none;transition:opacity 0.2s;z-index:10;font-family:'Source Serif Pro',serif}
+.freq-bar:hover .freq-tip{opacity:1}
+.freq-dates{display:flex;justify-content:space-between;padding-top:0.4rem}
+.freq-dates span{font-size:0.65rem;color:var(--text-muted);font-family:'Playfair Display',serif}
+.search-timeline .tl-stats{text-align:center;padding:0.75rem 0 2rem;font-family:'Playfair Display',serif;font-size:1rem;color:var(--text-dim)}
+.search-timeline .tl-stats span{color:var(--teal);font-weight:700;font-size:1.3rem}
+/* Pulse animation on diamond nodes */
+@keyframes node-pulse{0%,100%{box-shadow:0 0 16px var(--teal),0 0 4px var(--teal)}50%{box-shadow:0 0 24px var(--teal),0 0 8px var(--teal-bright)}}
+.search-timeline .tl-date-group:first-child::before{animation:node-pulse 2s ease-in-out infinite}
+@media(max-width:768px){
+  .search-timeline{padding:0 1rem 4rem}
+  .search-timeline .tl-line{padding-left:3rem;margin-left:1rem}
+  .search-timeline .tl-date-group::before{left:-3rem;margin-left:-5px}
+  .search-timeline .tl-date-group::after{left:-2.4rem;width:2.4rem}
+  .search-timeline .tl-item::before{left:-3.19rem;width:0.5rem}
+}
+
+/* Page footer */
+.page-footer{text-align:center;padding:3rem;color:var(--text-muted);font-size:0.9rem;border-top:1px solid var(--border);max-width:1400px;margin:0 auto}
+.page-footer a{color:var(--teal)}
+
+/* Divider */
+.entry-divider{height:1px;background:linear-gradient(to right,transparent,var(--border),transparent);margin:0 3rem}
+
+/* Back to top */
+.back-to-top{position:fixed;bottom:2rem;right:2rem;width:48px;height:48px;border-radius:50%;background:var(--surface);border:1px solid var(--border);color:var(--teal);font-size:1.5rem;cursor:pointer;display:none;align-items:center;justify-content:center;transition:all 0.3s;z-index:100;box-shadow:0 4px 20px rgba(0,0,0,0.5)}
+.back-to-top:hover{background:var(--teal);color:var(--bg);border-color:var(--teal)}
+.back-to-top.show{display:flex}
+
+/* Load more */
+.load-more{text-align:center;padding:2rem}
+.load-more button{font-family:'Playfair Display',serif;font-size:1rem;color:var(--teal);background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:0.8rem 2.5rem;cursor:pointer;transition:all 0.2s;letter-spacing:0.03em}
+.load-more button:hover{background:var(--teal);color:var(--bg);border-color:var(--teal)}
+
+/* ===== MOBILE ===== */
+@media(max-width:768px){
+  .header{padding:3rem 1.5rem 2rem}
+  .header::before{height:50px}
+  .header::after{top:50px}
+  .header h1{font-size:2.4rem}
+  .header .subtitle{font-size:1.1rem}
+  .controls{padding:0 1.5rem;flex-direction:column;gap:1rem;margin-bottom:2rem}
+  .search-wrap input{padding:0.8rem 1rem;font-size:1rem}
+  .stats{font-size:0.9rem}
+  .date-nav{padding:0 1.5rem;gap:0.4rem;margin-bottom:1.5rem}
+  .date-nav button{font-size:0.7rem;padding:0.3rem 0.6rem}
+  .main{padding:0 1rem 4rem}
+  .entry-header{flex-direction:column;padding:1.5rem 1.5rem 0;gap:0.5rem}
+  .entry-tagline{font-size:1.3rem}
+  .insights{grid-template-columns:1fr;padding:1.5rem;gap:1rem}
+  .insight-num{font-size:2rem}
+  .insight p{padding-right:2.5rem;font-size:0.95rem}
+  .entry-summary{columns:1;padding:1rem 1.5rem 1.5rem}
+  .entry-summary p{font-size:1rem}
+  .milestones-section{padding:0 1.5rem 1.5rem}
+  .entry-footer{padding:0 1.5rem 1.5rem}
+  .entry-divider{margin:0 1.5rem}
+  .back-to-top{bottom:1rem;right:1rem;width:40px;height:40px;font-size:1.2rem}
+}
+@media(max-width:480px){
+  .header h1{font-size:1.9rem}
+  .header .subtitle{font-size:0.95rem}
+  .entry-tagline{font-size:1.15rem}
+  .entry-header{padding:1.2rem 1.2rem 0}
+  .insights{padding:1.2rem}
+  .entry-summary{padding:0.8rem 1.2rem 1.2rem}
+  .milestones-section{padding:0 1.2rem 1.2rem}
+  .entry-footer{padding:0 1.2rem 1.2rem}
+  .entry-divider{margin:0 1.2rem}
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-art">
+    <svg viewBox="0 0 480 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Exponential ascent — flat then vertical -->
+      <path d="M10 95 C250 95 400 94 430 80 C445 65 452 30 454 0" stroke="url(#ascent-grad)" stroke-width="2" stroke-linecap="round" fill="none"/>
+      <!-- Pulsating apex -->
+      <circle cx="454" cy="0" r="4" fill="#b7e4c7" opacity="1">
+        <animate attributeName="r" values="4;8;4" dur="2.5s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="1;0.7;1" dur="2.5s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="454" cy="0" r="16" fill="none" stroke="#95d5b2" stroke-width="1" opacity="0.5">
+        <animate attributeName="r" values="10;30;10" dur="2.5s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0.5;0;0.5" dur="2.5s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="454" cy="0" r="28" fill="none" stroke="#52b788" stroke-width="0.6" opacity="0.25">
+        <animate attributeName="r" values="20;45;20" dur="2.5s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0.25;0;0.25" dur="2.5s" repeatCount="indefinite"/>
+      </circle>
+      <defs>
+        <linearGradient id="ascent-grad" x1="10" y1="95" x2="454" y2="0" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#2d6a4f" stop-opacity="0.2"/>
+          <stop offset="75%" stop-color="#40916c" stop-opacity="0.5"/>
+          <stop offset="90%" stop-color="#52b788" stop-opacity="0.9"/>
+          <stop offset="100%" stop-color="#95d5b2" stop-opacity="1"/>
+        </linearGradient>
+      </defs>
+    </svg>
+  </div>
+  <h1>The Ascent to Singularity</h1>
+  <p class="subtitle">A daily chronicle of the intelligence explosion, as it happens.</p>
+  <p class="credit">Curated by Clawdius — Pete's cluster of digital assistants — from the daily dispatches of <a href="https://x.com/alexwg" target="_blank" rel="noopener noreferrer">Dr. Alex Wissner-Gross (@alexwg)</a></p>
+</div>
+
+<div class="controls">
+  <div class="search-wrap">
+    <input type="text" id="search" placeholder="Search the timeline… (e.g. fusion, robots, GPT, DeepSeek, Gemini, SpaceX)">
+    <button class="search-clear" id="search-clear" aria-label="Clear search">✕</button>
+  </div>
+  <div class="stats"><span id="count">0</span> dispatches from the event horizon</div>
+</div>
+
+<div class="topics" id="topics"></div>
+<div class="date-nav" id="date-nav"></div>
+
+<div class="search-timeline" id="search-timeline"></div>
+<div class="main" id="main"></div>
+<div class="no-results" id="no-results">No entries match your search.</div>
+<div class="load-more" id="load-more" style="display:none"><button onclick="showMore()">Load More Dispatches</button></div>
+
+<div class="page-footer">
+  Data sourced from <a href="https://x.com/alexwg" rel="noopener noreferrer">@alexwg</a> on X, 
+  <a href="https://medium.com/@alexwg" rel="noopener noreferrer">Medium</a>, and 
+  <a href="https://theinnermostloop.substack.com" rel="noopener noreferrer">The Innermost Loop (Substack)</a>.
+  &nbsp;·&nbsp; Timeline updated daily.
+</div>
+
+<button class="back-to-top" id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">↑</button>
+
+<script>
+let DATA = [];
+let FILTERED = [];
+let SHOWN = 0;
+const BATCH = 9999;
+let debounceTimer;
+
+async function loadData() {
+  const resp = await fetch('data.json?' + Date.now());
+  DATA = await resp.json();
+  // Sort by date descending
+  DATA.sort((a, b) => {
+    const da = new Date(a.date), db = new Date(b.date);
+    return db - da;
+  });
+  buildDateNav();
+  buildTopics();
+  FILTERED = DATA;
+  SHOWN = 0;
+  renderBatch();
+}
+
+const main = document.getElementById('main');
+const searchInput = document.getElementById('search');
+const countEl = document.getElementById('count');
+const noResults = document.getElementById('no-results');
+const loadMoreEl = document.getElementById('load-more');
+const btt = document.getElementById('btt');
+const dateNav = document.getElementById('date-nav');
+const topicsEl = document.getElementById('topics');
+
+function buildTopics() {
+  const keywords = ['OpenAI','Anthropic','Claude','Gemini','Google','Meta','Grok','xAI','DeepSeek','AGI','OpenClaw','Moltbook','SpaceX','humanoid','robots','energy','quantum','UAP','crypto','military','China'];
+  const counts = {};
+  keywords.forEach(kw => {
+    const c = DATA.filter(e => JSON.stringify(e).toLowerCase().includes(kw.toLowerCase())).length;
+    if (c > 0) counts[kw] = c;
+  });
+  // Sort by count desc, top 10 only
+  const sorted = Object.entries(counts).sort((a,b) => b[1] - a[1]).slice(0, 10);
+  let html = '<span class="label">Topics</span>';
+  sorted.forEach(([kw, c]) => {
+    html += `<button data-topic="${kw}">${kw} <span class="count">${c}</span></button>`;
+  });
+  topicsEl.innerHTML = html;
+  topicsEl.querySelectorAll('button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const topic = btn.dataset.topic;
+      searchInput.value = topic;
+      searchInput.dispatchEvent(new Event('input'));
+      topicsEl.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+}
+
+function buildDateNav() {
+  const months = new Map();
+  DATA.forEach(e => {
+    const d = new Date(e.date);
+    const key = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`;
+    const label = d.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+    if (!months.has(key)) months.set(key, label);
+  });
+  dateNav.innerHTML = '<button class="active" data-month="all">All</button>';
+  [...months.entries()].sort((a,b) => b[0].localeCompare(a[0])).forEach(([key, label]) => {
+    dateNav.innerHTML += `<button data-month="${key}">${label}</button>`;
+  });
+  dateNav.querySelectorAll('button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      dateNav.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      filterByMonth(btn.dataset.month);
+    });
+  });
+}
+
+function filterByMonth(month) {
+  searchInput.value = '';
+  searchTimeline.classList.remove('active');
+  searchTimeline.innerHTML = '';
+  main.style.display = '';
+  if (month === 'all') {
+    FILTERED = DATA;
+  } else {
+    FILTERED = DATA.filter(e => {
+      const d = new Date(e.date);
+      const key = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`;
+      return key === month;
+    });
+  }
+  SHOWN = 0;
+  main.innerHTML = '';
+  renderBatch();
+}
+
+function renderBatch() {
+  countEl.textContent = FILTERED.length;
+  noResults.style.display = FILTERED.length ? 'none' : 'block';
+
+  const batch = FILTERED.slice(SHOWN, SHOWN + BATCH);
+  batch.forEach((entry, i) => {
+    const div = document.createElement('div');
+    div.className = 'entry';
+
+    const summaryParas = (entry.summary || '').split('\n\n').filter(Boolean).map(p => `<p>${p}</p>`).join('');
+    const insightsHtml = (entry.insights || []).map((ins, idx) => `
+      <div class="insight">
+        <div class="insight-num">${idx + 1}</div>
+        <p>${ins}</p>
+      </div>
+    `).join('');
+
+    div.innerHTML = `
+      <div class="entry-header">
+        <div class="entry-date">${entry.date}</div>
+        <div class="entry-tagline">${entry.tagline}</div>
+      </div>
+      ${insightsHtml ? `<div class="insights">${insightsHtml}</div>` : ''}
+      <div class="entry-divider"></div>
+      ${summaryParas ? `<div class="entry-summary">${summaryParas}</div>` : ''}
+      <div class="milestones-section">
+        <button class="milestones-toggle" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">
+          <span class="arrow">›</span> ${entry.milestones.length} milestones
+        </button>
+        <ul class="milestones-list">
+          ${entry.milestones.map(m => `<li>${m}</li>`).join('')}
+        </ul>
+      </div>
+      <div class="entry-footer">
+        ${entry.links.map(l => `<a href="${l.url}" target="_blank" rel="noopener noreferrer">${l.label} ↗</a>`).join('')}
+      </div>
+    `;
+    main.appendChild(div);
+    setTimeout(() => div.classList.add('visible'), 60 + i * 60);
+  });
+
+  SHOWN += batch.length;
+  loadMoreEl.style.display = (SHOWN < FILTERED.length) ? 'block' : 'none';
+}
+
+function showMore() { renderBatch(); }
+
+const searchTimeline = document.getElementById('search-timeline');
+const searchClear = document.getElementById('search-clear');
+
+searchClear.addEventListener('click', () => {
+  searchInput.value = '';
+  searchInput.dispatchEvent(new Event('input'));
+  searchInput.focus();
+});
+
+function highlightText(text, query) {
+  if (!query) return text;
+  const escaped = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  return text.replace(new RegExp(`(${escaped})`, 'gi'), '<mark>$1</mark>');
+}
+
+function renderSearchTimeline(query) {
+  const q = query.toLowerCase();
+  // Collect all matching snippets
+  const hits = [];
+  DATA.forEach(entry => {
+    const addHit = (text, type) => {
+      hits.push({ date: entry.date, tagline: entry.tagline, text, type });
+    };
+    if (entry.tagline.toLowerCase().includes(q)) addHit(entry.tagline, 'tagline');
+    (entry.insights || []).forEach(ins => {
+      if (ins.toLowerCase().includes(q)) addHit(ins, 'insight');
+    });
+    entry.milestones.forEach(m => {
+      if (m.toLowerCase().includes(q)) addHit(m, 'milestone');
+    });
+    if (entry.summary) {
+      // Split into sentences, find matching ones
+      const sentences = entry.summary.split(/(?<=[.!?])\s+/);
+      sentences.forEach(s => {
+        if (s.toLowerCase().includes(q)) addHit(s, 'summary');
+      });
+    }
+  });
+
+  // Build frequency chart data — one bar per date in the full dataset
+  const freqMap = new Map();
+  DATA.forEach(entry => {
+    const hitCount = [
+      entry.tagline,
+      ...(entry.insights || []),
+      ...entry.milestones,
+      entry.summary || ''
+    ].filter(t => t.toLowerCase().includes(q)).length;
+    freqMap.set(entry.date, hitCount);
+  });
+
+  if (!hits.length) {
+    searchTimeline.innerHTML = '';
+    searchTimeline.classList.add('active');
+    noResults.style.display = 'block';
+    countEl.textContent = '0';
+    return;
+  }
+  noResults.style.display = 'none';
+
+  // Group by date
+  const grouped = new Map();
+  hits.forEach(h => {
+    if (!grouped.has(h.date)) grouped.set(h.date, { tagline: h.tagline, items: [] });
+    // Avoid duplicate tagline entries if tagline matched
+    if (h.type === 'tagline') return;
+    grouped.get(h.date).items.push(h);
+  });
+  // Ensure dates with only tagline matches still show
+  hits.filter(h => h.type === 'tagline').forEach(h => {
+    const g = grouped.get(h.date);
+    if (!g.items.length) g.items.push(h);
+  });
+
+  const typeLabels = { insight: 'Insight', milestone: 'Milestone', summary: 'Analysis', tagline: 'Headline' };
+
+  // Frequency visualization — chronological (oldest left, newest right)
+  const chronological = [...DATA].reverse();
+  const maxFreq = Math.max(...[...freqMap.values()], 1);
+  let freqHtml = '<div class="freq-chart"><div class="freq-label">Frequency over time</div><div class="freq-track">';
+  chronological.forEach(entry => {
+    const count = freqMap.get(entry.date) || 0;
+    const size = count > 0 ? Math.max(6, Math.round((count / maxFreq) * 20)) : 4;
+    const cls = count > 0 ? 'has-hits' : '';
+    const shortDate = new Date(entry.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+    freqHtml += `<div class="freq-bar"><div class="freq-tip">${shortDate}: ${count} mention${count !== 1 ? 's' : ''}</div><div class="dot ${cls}" style="width:${size}px;height:${size}px;max-width:none"></div></div>`;
+  });
+  freqHtml += '</div><div class="freq-dates">';
+  if (chronological.length) {
+    const oldest = new Date(chronological[0].date).toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+    const newest = new Date(chronological[chronological.length - 1].date).toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+    freqHtml += `<span>${oldest}</span><span>${newest}</span>`;
+  }
+  freqHtml += '</div></div>';
+
+  let html = freqHtml;
+  html += `<div class="tl-stats"><span>${hits.length}</span> mentions across <span>${grouped.size}</span> dispatches</div>`;
+  html += '<div class="tl-line">';
+  for (const [date, group] of grouped) {
+    html += `<div class="tl-date-group">`;
+    html += `<div class="tl-date">${date}</div>`;
+    html += `<div class="tl-tagline">${highlightText(group.tagline, query)}</div>`;
+    group.items.forEach(item => {
+      html += `<div class="tl-item"><div class="tl-type">${typeLabels[item.type] || item.type}</div>${highlightText(item.text, query)}</div>`;
+    });
+    html += `</div>`;
+  }
+  html += '</div>';
+  searchTimeline.innerHTML = html;
+  countEl.textContent = hits.length;
+}
+
+// Instant search — no debounce
+searchInput.addEventListener('input', e => {
+  const q = e.target.value.trim();
+  dateNav.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+  dateNav.querySelector('[data-month="all"]')?.classList.add('active');
+  // Clear topic highlights if user is typing manually
+  if (!e.isTrusted) {} else { topicsEl.querySelectorAll('button').forEach(b => b.classList.remove('active')); }
+  searchClear.style.display = q ? 'block' : 'none';
+
+  if (!q) {
+    // Back to card view
+    searchTimeline.classList.remove('active');
+    searchTimeline.innerHTML = '';
+    main.style.display = '';
+    loadMoreEl.style.display = '';
+    FILTERED = DATA;
+    SHOWN = 0;
+    main.innerHTML = '';
+    renderBatch();
+    return;
+  }
+
+  // Switch to timeline mode
+  main.style.display = 'none';
+  loadMoreEl.style.display = 'none';
+  searchTimeline.classList.add('active');
+  renderSearchTimeline(q);
+});
+
+// Keyboard shortcut Ctrl/Cmd+K
+document.addEventListener('keydown', e => {
+  if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+    e.preventDefault();
+    searchInput.focus();
+    searchInput.select();
+  }
+});
+
+// Back to top
+window.addEventListener('scroll', () => {
+  btt.classList.toggle('show', window.scrollY > 600);
+});
+
+loadData();
+</script>
+
+</body>
+</html>
