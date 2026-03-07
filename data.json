@@ -1389,6 +1389,34 @@
       {
         "event": "Anthropic CEO apologizes for leaked anti-Pentagon internal post",
         "detail": "Amodei retracts 'dictator-style praise' comments; offers continued military service at nominal cost during transition"
+      },
+      {
+        "event": "Anthropic launches Claude Code Security \u2014 500+ zero-days found in production code",
+        "detail": "Built into Claude Code web interface. Multi-stage verification pipeline. Enterprise/Team preview. Found 500+ vulnerabilities in open-source codebases using Opus 4.6, some hiding for decades. Cybersecurity stocks tumbled on announcement."
+      },
+      {
+        "event": "GPT-5.4 hits 83% on GDPval \u2014 meets or exceeds professionals across 44 occupations",
+        "detail": "Up from 70.9% (GPT-5.2). Investment banking modeling: 87.3% vs 68.4%. ARC-AGI-2: 83.3% (Pro). Hallucinations down 33% per claim. Noam Brown: 'We see no wall.'"
+      },
+      {
+        "event": "OpenAI launches ChatGPT for Excel \u2014 natural language spreadsheet control",
+        "detail": "Beta add-in powered by GPT-5.4. Create, edit, analyze spreadsheets via conversation. Financial data connections for FactSet, Moody's, S&P Global, LSEG. US/Canada/Australia first, Google Sheets next."
+      },
+      {
+        "event": "Claude gaining 1M+ new users per day",
+        "detail": "Mike Krieger (Instagram co-founder, now leading Anthropic experiments division) shared milestone on X. Driven by Pentagon controversy PR boost and broader AI adoption surge."
+      },
+      {
+        "event": "Oracle cutting thousands of jobs to fund AI data center expansion",
+        "detail": "Multiple divisions affected, cuts as early as March. Free cash flow expected negative for years before AI spending pays off (~2030). Stock down 54% from Sept 2025 high. $50B in debt/equity sales planned."
+      },
+      {
+        "event": "OpenAI reports AI models can barely control their own reasoning \u2014 calls it encouraging",
+        "detail": "First report on 'CoT controllability' with GPT-5.4 Thinking. Reasoning models almost universally fail to deliberately manipulate their own chain-of-thought. OpenAI frames this as positive for AI safety."
+      },
+      {
+        "event": "AI partner debt hits $96B; Big Tech borrowed $121B \u2014 4x normal rate",
+        "detail": "FT reports OpenAI partners at $96B combined debt. Bank of America: five major tech companies took on $121B in new debt. Bank of England flagged risks; only 3% of consumers pay for AI services."
       }
     ],
     "links": [
