@@ -1359,5 +1359,43 @@
         "url": "https://medium.com/@alexwg/welcome-to-december-13-2025-8e0865d08683"
       }
     ]
+  },
+  {
+    "date": "March 7, 2026",
+    "tagline": "The AI security arms race just went live \u2014 and the Pentagon's ban turned into the best marketing campaign in tech history.",
+    "insights": [
+      "OpenAI launched Codex Security, an AI agent that scanned 1.2 million commits, flagged 792 critical vulnerabilities, and earned 14 CVEs across projects like OpenSSH and Chromium \u2014 making AI not just the attacker but the defender in cybersecurity.",
+      "SoftBank is seeking a record $40 billion loan \u2014 the largest dollar borrowing in the conglomerate's history \u2014 primarily to finance its OpenAI stake, with JPMorgan among four underwriting banks.",
+      "Anthropic's Pentagon 'supply chain risk' designation triggered a Streisand effect: Claude is breaking daily signup records worldwide and topping App Store charts across the US, Canada, and Europe. The ban became a billboard."
+    ],
+    "summary": "The cybersecurity industry just got its AI reckoning. OpenAI shipped Codex Security \u2014 not a scanner, not an alert tool, but a full autonomous security agent that builds project-specific threat models, tests vulnerabilities in sandboxed environments, and has already earned 14 CVEs across critical infrastructure projects including OpenSSH, GnuTLS, and Chromium. During beta, it cut false positives by 50% and redundant alerts by 84%. Over the past 30 days alone, it scanned 1.2 million commits and flagged 792 critical vulnerabilities. Anthropic shipped its own cybersecurity tool days earlier, sending cybersecurity stocks tumbling. The message is clear: AI companies are now competing to replace the security industry, not just augment it.\n\nThe financial infrastructure around AI continues to inflate at unprecedented scale. SoftBank is negotiating a $40 billion bridge loan \u2014 the largest pure dollar borrowing in Masayoshi Son's career \u2014 primarily to fund its OpenAI stake. Four banks including JPMorgan Chase are underwriting the 12-month facility. This comes as Anthropic approaches a $20 billion annual revenue run rate at a $380 billion valuation, and OpenAI delays its 'adult mode' feature to focus on intelligence gains, personalization, and proactive capabilities.\n\nThe most ironic development: the Pentagon's formal designation of Anthropic as a supply chain risk has backfired spectacularly. Rather than suppressing adoption, the controversy drove Claude to break daily signup records in every available market. AppFigures data shows Claude topping App Store charts for free and AI apps across dozens of countries. Anthropic CEO Dario Amodei, while apologizing for a leaked internal post criticizing the Pentagon deal with OpenAI, clarified the designation 'plainly applies only to the use of Claude by customers as a direct part of contracts with the Department of War.' The company is offering to continue providing models to the military at nominal cost during any transition. In the AI era, getting banned by the Pentagon might be the most effective growth hack yet.",
+    "milestones": [
+      {
+        "event": "OpenAI launches Codex Security: autonomous AI vulnerability hunter",
+        "detail": "1.2M commits scanned, 792 critical vulns flagged, 14 CVEs issued (OpenSSH, GnuTLS, Chromium). 50% fewer false positives. Free first month for Enterprise/Business/Edu."
+      },
+      {
+        "event": "SoftBank seeks record $40B loan for OpenAI stake",
+        "detail": "Largest dollar borrowing in SoftBank history; 12-month bridge loan underwritten by JPMorgan and three other banks"
+      },
+      {
+        "event": "Anthropic's Pentagon ban triggers Streisand effect: record signups worldwide",
+        "detail": "Claude tops App Store charts in US, Canada, Europe; daily signup records broken; $380B valuation, ~$20B ARR"
+      },
+      {
+        "event": "OpenAI delays 'adult mode' to prioritize intelligence and proactivity",
+        "detail": "Feature pushed from Q1 2026; resources redirected to intelligence gains, personality improvements, and proactive experience"
+      },
+      {
+        "event": "Anthropic CEO apologizes for leaked anti-Pentagon internal post",
+        "detail": "Amodei retracts 'dictator-style praise' comments; offers continued military service at nominal cost during transition"
+      }
+    ],
+    "links": [
+      "https://openai.com/index/codex-security-now-in-research-preview/",
+      "https://the-decoder.com/",
+      "https://www.theverge.com/ai-artificial-intelligence",
+      "https://www.bloomberg.com/news/articles/2026-03-06/softbank-seeks-record-loan-of-up-to-40-billion-for-openai-stake"
+    ]
   }
 ]
