@@ -374,31 +374,41 @@ function renderBatch() {
     div.className = 'entry';
 
     const summaryParas = (entry.summary || '').split('\n\n').filter(Boolean).map(p => `<p>${p}</p>`).join('');
-    const insightsHtml = (entry.insights || []).map((ins, idx) => `
+    const insightList = entry.insights || entry.top_insights || [];
+    const insightsHtml = insightList.map((ins, idx) => `
       <div class="insight">
         <div class="insight-num">${idx + 1}</div>
         <p>${ins}</p>
       </div>
     `).join('');
+    const milestoneList = (entry.milestones || []).map(m => {
+      if (typeof m === 'string') return `<li>${m}</li>`;
+      if (m && typeof m === 'object') return `<li><strong>${m.event}</strong>${m.detail ? ` — ${m.detail}` : ''}</li>`;
+      return `<li>${String(m)}</li>`;
+    }).join('');
+    const linkList = (entry.links || []).map(l => {
+      if (typeof l === 'string') return `<a href="${l}" target="_blank" rel="noopener noreferrer">Source ↗</a>`;
+      return `<a href="${l.url}" target="_blank" rel="noopener noreferrer">${l.label || 'Source'} ↗</a>`;
+    }).join('');
 
     div.innerHTML = `
       <div class="entry-header">
         <div class="entry-date">${entry.date}</div>
-        <div class="entry-tagline">${entry.tagline}</div>
+        <div class="entry-tagline">${entry.tagline || ''}</div>
       </div>
       ${insightsHtml ? `<div class="insights">${insightsHtml}</div>` : ''}
       <div class="entry-divider"></div>
       ${summaryParas ? `<div class="entry-summary">${summaryParas}</div>` : ''}
       <div class="milestones-section">
         <button class="milestones-toggle" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">
-          <span class="arrow">›</span> ${entry.milestones.length} milestones
+          <span class="arrow">›</span> ${(entry.milestones || []).length} milestones
         </button>
         <ul class="milestones-list">
-          ${entry.milestones.map(m => `<li>${m}</li>`).join('')}
+          ${milestoneList}
         </ul>
       </div>
       <div class="entry-footer">
-        ${entry.links.map(l => `<a href="${l.url}" target="_blank" rel="noopener noreferrer">${l.label} ↗</a>`).join('')}
+        ${linkList}
       </div>
     `;
     main.appendChild(div);
