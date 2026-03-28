@@ -388,7 +388,7 @@ function renderBatch() {
     }).join('');
     const linkList = (entry.links || []).map(l => {
       if (typeof l === 'string') return `<a href="${l}" target="_blank" rel="noopener noreferrer">Source ↗</a>`;
-      return `<a href="${l.url}" target="_blank" rel="noopener noreferrer">${l.label || 'Source'} ↗</a>`;
+      return `<a href="${l.url}" target="_blank" rel="noopener noreferrer">${l.title || l.label || 'Source'} ↗</a>`;
     }).join('');
 
     div.innerHTML = `
@@ -436,6 +436,14 @@ function highlightText(text, query) {
   return text.replace(new RegExp(`(${escaped})`, 'gi'), '<mark>$1</mark>');
 }
 
+function milestoneToText(milestone) {
+  if (typeof milestone === 'string') return milestone;
+  if (milestone && typeof milestone === 'object') {
+    return [milestone.event, milestone.detail].filter(Boolean).join(' — ');
+  }
+  return String(milestone || '');
+}
+
 function renderSearchTimeline(query) {
   const q = query.toLowerCase();
   // Collect all matching snippets
@@ -444,12 +452,13 @@ function renderSearchTimeline(query) {
     const addHit = (text, type) => {
       hits.push({ date: entry.date, tagline: entry.tagline, text, type });
     };
-    if (entry.tagline.toLowerCase().includes(q)) addHit(entry.tagline, 'tagline');
-    (entry.insights || []).forEach(ins => {
-      if (ins.toLowerCase().includes(q)) addHit(ins, 'insight');
+    if ((entry.tagline || '').toLowerCase().includes(q)) addHit(entry.tagline, 'tagline');
+    (entry.insights || entry.top_insights || []).forEach(ins => {
+      if ((ins || '').toLowerCase().includes(q)) addHit(ins, 'insight');
     });
-    entry.milestones.forEach(m => {
-      if (m.toLowerCase().includes(q)) addHit(m, 'milestone');
+    (entry.milestones || []).forEach(m => {
+      const milestoneText = milestoneToText(m);
+      if (milestoneText.toLowerCase().includes(q)) addHit(milestoneText, 'milestone');
     });
     if (entry.summary) {
       // Split into sentences, find matching ones
@@ -464,9 +473,9 @@ function renderSearchTimeline(query) {
   const freqMap = new Map();
   DATA.forEach(entry => {
     const hitCount = [
-      entry.tagline,
-      ...(entry.insights || []),
-      ...entry.milestones,
+      entry.tagline || '',
+      ...((entry.insights || entry.top_insights || []).map(ins => ins || '')),
+      ...((entry.milestones || []).map(milestoneToText)),
       entry.summary || ''
     ].filter(t => t.toLowerCase().includes(q)).length;
     freqMap.set(entry.date, hitCount);
